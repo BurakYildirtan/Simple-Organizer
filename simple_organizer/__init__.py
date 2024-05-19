@@ -2,11 +2,12 @@ import os
 import datetime as dt
 import constants
 import helpers
+from models import module_data as md
 
 ##https://get.api-feiertage.de
 
 
-def getModuleData():
+def getModuleData() :
     moduleName = getModuleName()
     startDate = getStartDate()
     endDate = getEndDate(startDate)
@@ -14,7 +15,7 @@ def getModuleData():
     #hasPrakt = question("Gibt es ein Praktikum ? y|n")
     #hasTut = question("Gibt es ein Tutorium? y|n")
     
-    print("Auswahl wurde getroffen ", moduleName," ", startDate, " ", endDate, " ", lectureDays)
+    return md.ModuleData(moduleName, startDate, endDate, lectureDays)
 
 
 def printProjectName():
@@ -126,4 +127,5 @@ def getDayNum() -> int:
 # Main
 if __name__ == "__main__":
     printProjectName()
-    getModuleData()
+    moduleDate = getModuleData()
+    print(moduleDate)
