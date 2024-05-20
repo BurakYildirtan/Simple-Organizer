@@ -4,7 +4,7 @@ Dieses Projekt verfolgt das Ziel, eine einfache Ordnerstruktur für ein beliebig
 
 ### Wie ? 
 
-<b>Das Programm benötigt um diese Ordnerstruktur zu erstellen folgende Daten:</b>
+<b>Folgende Daten werden abgefragt:</b>
 
 1. Um welches Modul handelt es sich ?
 1. Wann beginnt der Kurs ? (in TT.MM.YYYY)
