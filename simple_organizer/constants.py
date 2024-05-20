@@ -37,3 +37,6 @@ QUESTION_MORE_LECTURE_DAYS = "Möchtest du noch weitere Tage eingeben ? y|n"
 QUESTION_LECTURE_DAY = "Am welchen Tag ist die Vorlesung?"
 QUESTION_CHOOSE = "Bitte treffe eine Auswahl:"
 
+
+LECTURE = "Vorlesung"
+

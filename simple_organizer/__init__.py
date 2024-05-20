@@ -1,20 +1,19 @@
 import os
-import datetime as dt
 import constants
 import helpers
 from models import module_data as md
+from datetime import datetime
 
 ##https://get.api-feiertage.de
 
 
-def getModuleData() :
+def initModuleData() -> md.ModuleData:
     moduleName = getModuleName()
     startDate = getStartDate()
     endDate = getEndDate(startDate)
     lectureDays = getLectureDays()
-    #hasPrakt = question("Gibt es ein Praktikum ? y|n")
-    #hasTut = question("Gibt es ein Tutorium? y|n")
-    
+    # hasPrakt = question("Gibt es ein Praktikum ? y|n")
+    # hasTut = question("Gibt es ein Tutorium? y|n")
     return md.ModuleData(moduleName, startDate, endDate, lectureDays)
 
 
@@ -30,9 +29,9 @@ def printProjectName():
 
 def getModuleName() -> str:
     return helpers.question(constants.QUESTION_MODULE_NAME)
-    
 
-def getStartDate() -> dt.datetime:
+
+def getStartDate() -> datetime:
     response = helpers.question(constants.QUESTION_START_DATE)
 
     dateList = response.split(".")
@@ -49,11 +48,11 @@ def getStartDate() -> dt.datetime:
     month = int(dateList[1])
     day = int(dateList[0])
 
-    startDate = dt.datetime(year, month, day)
+    startDate = datetime(year, month, day)
     return startDate
 
 
-def getEndDate(startDate: dt.datetime) -> dt.datetime:
+def getEndDate(startDate: datetime) -> datetime:
     response = helpers.question(constants.QUESTION_END_DATE)
 
     dateList = response.split(".")
@@ -70,7 +69,7 @@ def getEndDate(startDate: dt.datetime) -> dt.datetime:
     month = int(dateList[1])
     day = int(dateList[0])
 
-    endDate = dt.datetime(year, month, day)
+    endDate = datetime(year, month, day)
 
     if endDate < startDate:
         print(constants.ERR_DATE_IN_PAST)
@@ -79,7 +78,7 @@ def getEndDate(startDate: dt.datetime) -> dt.datetime:
 
 def getLectureDays() -> list:
     lectureDays = list()
-    
+
     confimed = False
     while not confimed:
         printDayNums()
@@ -94,7 +93,7 @@ def getLectureDays() -> list:
         userRes = helpers.question(constants.QUESTION_MORE_LECTURE_DAYS)
         if userRes == "n":
             confimed = True
-    
+
     return lectureDays
 
 
@@ -123,9 +122,24 @@ def getDayNum() -> int:
 
     return dayNum
 
-
+def createModuleStructure(moduleData: md.ModuleData, basePath: str):
+    lectureDates = moduleData.getAllLectureDates()
+    for lectureDate in lectureDates:
+        #example :Jahr_Monat_Tag_Modulname_Vorlesung
+        dateStr = lectureDate.strftime("%Y_%m_%d")
+        lectureDirName = f"{dateStr}_{moduleData.moduleName}_{constants.LECTURE}"
+        dirPath = f"{basePath}/{moduleData.moduleName}/{constants.LECTURE}/{lectureDirName}"
+        os.makedirs(dirPath)
+    
+    print("FINISHED")
+    
+    
+    
 # Main
 if __name__ == "__main__":
     printProjectName()
-    moduleDate = getModuleData()
-    print(moduleDate)
+    moduleData = initModuleData()
+    basePath = f"."
+    createModuleStructure(moduleData, basePath)
+    
+
