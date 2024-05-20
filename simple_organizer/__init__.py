@@ -12,10 +12,40 @@ def initModuleData() -> md.ModuleData:
     startDate = getStartDate()
     endDate = getEndDate(startDate)
     lectureDays = getLectureDays()
-    # hasPrakt = question("Gibt es ein Praktikum ? y|n")
-    # hasTut = question("Gibt es ein Tutorium? y|n")
-    return md.ModuleData(moduleName, startDate, endDate, lectureDays)
+    praticalTasks = getPracticalTasks()
+    tutorium = getTutorium()
+    
+    return md.ModuleData(moduleName, startDate, endDate, lectureDays, praticalTasks, tutorium )
 
+def getPracticalTasks() -> int:
+    hasPrakticalTasks = helpers.question(constants.QUESTION_PRATICAL_LECTURES)
+    
+    if hasPrakticalTasks == "n":
+        return 0
+    
+    if hasPrakticalTasks != "y":
+        print("falscher Buchstabe!")
+        return 0
+    
+    tasksNum = helpers.question(constants.QUESTION_HOW_MANY_PRACTICAL_LECTURES)
+    
+    if not tasksNum.isdigit() & int(tasksNum) % 1 == 0:
+        print(constants.ERR_RESPONSE_NOT_INT)
+        return
+    
+    return int(tasksNum)
+        
+def getTutorium() -> list:
+    hasTutorium = helpers.question(constants.QUESTION_TUTORIUM)
+    if hasTutorium == "n":
+        return []
+    
+    if hasTutorium != "y":
+        print("falscher Buchstabe!")
+        return []
+    
+    return getLectureDays()
+    
 
 def printProjectName():
     print(
@@ -99,13 +129,13 @@ def getLectureDays() -> list:
 
 def printDayNums():
     print(constants.QUESTION_LECTURE_DAY)
-    print(constants.MONDAY + " - " + str(constants.NUM_MONDAY))
-    print(constants.TUESDAY + " - " + str(constants.NUM_TUESDAY))
-    print(constants.WEDNESDAY + " - " + str(constants.NUM_WEDNESDAY))
-    print(constants.THURSDAY + " - " + str(constants.NUM_THURSDAY))
-    print(constants.FRIDAY + " - " + str(constants.NUM_FRIDAY))
-    print(constants.SATURDAY + " - " + str(constants.NUM_SATURDAY))
-    print(constants.SUNDAY + " - " + str(constants.NUM_SUNDAY))
+    print(f"{constants.MONDAY}-{str(constants.NUM_MONDAY)}")
+    print(f"{constants.TUESDAY}-{str(constants.NUM_TUESDAY)}")
+    print(f"{constants.WEDNESDAY}-{str(constants.NUM_WEDNESDAY)}")
+    print(f"{constants.THURSDAY}-{str(constants.NUM_THURSDAY)}")
+    print(f"{constants.FRIDAY}-{str(constants.NUM_FRIDAY)}")
+    print(f"{constants.SATURDAY}-{str(constants.NUM_SATURDAY)}")
+    print(f"{constants.SUNDAY}-{str(constants.NUM_SUNDAY)}")
 
 
 def getDayNum() -> int:
@@ -123,23 +153,45 @@ def getDayNum() -> int:
     return dayNum
 
 def createModuleStructure(moduleData: md.ModuleData, basePath: str):
+
     lectureDates = moduleData.getAllLectureDates()
     for lectureDate in lectureDates:
-        #example :Jahr_Monat_Tag_Modulname_Vorlesung
         dateStr = lectureDate.strftime("%Y_%m_%d")
         lectureDirName = f"{dateStr}_{moduleData.moduleName}_{constants.LECTURE}"
         dirPath = f"{basePath}/{moduleData.moduleName}/{constants.LECTURE}/{lectureDirName}"
+        
         os.makedirs(dirPath)
     
-    print("FINISHED")
+    praticaltasks = range(1,moduleData.practialTasks + 1)
+    for practicalTasks in praticaltasks:
+        practialTaskDirName = f"{moduleData.moduleName}_{constants.PRATICAL_LECTURE}_{constants.TASK}_{str(practicalTasks)}"
+        dirPath = f"{basePath}/{moduleData.moduleName}/{constants.PRATICAL_LECTURE}/{practialTaskDirName}"
+        
+        attachmentsPath = f"{dirPath}/{constants.ATTACHMENTS}"
+        elaborationPath = f"{dirPath}/{constants.ELABORATION}"
+        
+        os.makedirs(attachmentsPath)
+        os.makedirs(elaborationPath)
+        
+    tutoriumDates = moduleData.getAllTutoriumDates()
+    for lectureDate in tutoriumDates:
+        dateStr = lectureDate.strftime("%Y_%m_%d")
+        lectureDirName = f"{dateStr}_{moduleData.moduleName}_{constants.TUTORIUM}"
+        dirPath = f"{basePath}/{moduleData.moduleName}/{constants.TUTORIUM}/{lectureDirName}"
+        
+        os.makedirs(dirPath)
+        
+        
+    
+    print("--------FINISHED---------")
     
     
     
 # Main
 if __name__ == "__main__":
+    basePath = f"."
     printProjectName()
     moduleData = initModuleData()
-    basePath = f"."
     createModuleStructure(moduleData, basePath)
     
 

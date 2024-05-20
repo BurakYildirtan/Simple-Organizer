@@ -36,7 +36,14 @@ QUESTION_END_DATE = "Wann endet der Kurs ? (in TT.MM.YYYY)"
 QUESTION_MORE_LECTURE_DAYS = "Möchtest du noch weitere Tage eingeben ? y|n"
 QUESTION_LECTURE_DAY = "Am welchen Tag ist die Vorlesung?"
 QUESTION_CHOOSE = "Bitte treffe eine Auswahl:"
+QUESTION_PRATICAL_LECTURES = "Gibt es ein Praktikum ? y|n"
+QUESTION_TUTORIUM = "Gibt es ein Tutorium? y|n"
+QUESTION_HOW_MANY_PRACTICAL_LECTURES = "Wie viele Aufgabenblätter hast du zu bearbeiten ?"
 
 
 LECTURE = "Vorlesung"
-
+PRATICAL_LECTURE = "Praktikum"
+TUTORIUM = "Tutorium"
+TASK = "Aufgabe"
+ELABORATION = "Ausarbeitung"
+ATTACHMENTS = "Anlagen"
