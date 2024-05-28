@@ -2,8 +2,12 @@
 
 Dieses Projekt verfolgt das Ziel, eine einfache Ordnerstruktur für ein beliebiges Modul deiner Wahl zu erstellen.
 
-### Wie ? 
 
+### Features
+<b>- Feiertage werden mitberücksichtigt ✅</b>
+
+
+### Wie ? 
 <b>Folgende Daten werden abgefragt:</b>
 
 1. Um welches Modul handelt es sich ?
@@ -38,7 +42,6 @@ Dieses Projekt verfolgt das Ziel, eine einfache Ordnerstruktur für ein beliebig
 ---Jahr_Monat_Tag_Modulname_Tutorium
 
 ### Für die Zukunft:
-- Feiertage werden mitberücksichtigt
 - Dateien werden automatisch erstellt
 - UI wird gebaut :-)
 - Anlagen Ordner
