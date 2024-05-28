@@ -24,6 +24,7 @@ ERR_DATE_FORMAT = "datum ist im falschen Format angegeben (TT.MM.YYYY)"
 ERR_DATE_IN_PAST = "datum ist in der Vergangenheit"
 ERR_RESPONSE_NOT_INT = "die Eingabe muss eine Ganzzahl sein"
 ERR_NOT_IN_NUM_LIST = "die Eingabe ist nicht einer der Auswahlmöglichkeiten"
+ERR_STATUS_CODE = "die Feiertage konnten nicht aufgerufen werden"
 
 KEY_MODULE_NAME = "moduleName"
 KEY_START_DATE = "startDate"
@@ -47,3 +48,10 @@ TUTORIUM = "Tutorium"
 TASK = "Aufgabe"
 ELABORATION = "Ausarbeitung"
 ATTACHMENTS = "Anlagen"
+
+URL_BASE_HOLIDAY_API = "https://get.api-feiertage.de"
+
+
+PROPERTY_YEARS = "years"
+PROPERTY_STATES = "states"
+VALUE_BW = "bw"
