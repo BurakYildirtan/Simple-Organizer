@@ -114,6 +114,8 @@ class Gui:
         holidayDates = holidaysApi.getHolidayDates(holidays)
         moduleData.createModuleStructure(constants.BASE_PATH, holidayDates)
         
+        self.__reset()
+        
     def __initResetBtn(self):
         reset = ctk.CTkButton(self.frame, text=constants.BTN_RESET, font=ctk.CTkFont("Arial", 16), command=self.__reset, fg_color="transparent", text_color="#28282B", hover_color="#A9A9A9")
         reset.grid(row=8, column=0, columnspan=2, pady=10)
@@ -122,6 +124,6 @@ class Gui:
         self.modulNameEntry.delete(0, ctk.END)
         self.startDateEntry.delete(0, ctk.END)
         self.endDateEntry.delete(0, ctk.END)
-        self.lectureDaysLb.get()
+        self.lectureDaysLb.selection_clear(0,ctk.END)
         self.practicalTasksEntry.delete(0, ctk.END)
-        self.tutoriumLb.get()
+        self.tutoriumLb.selection_clear(0, ctk.END)
