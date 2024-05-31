@@ -1,7 +1,4 @@
-##https://get.api-feiertage.de  
-from models import module_data as md
-from  services import holidays_api as holidayApi
-from utils import helpers, constants
+from utils import helpers
 from gui import newgui
 
 def main():
