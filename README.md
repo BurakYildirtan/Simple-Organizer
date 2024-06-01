@@ -18,6 +18,7 @@ Dieses Projekt verfolgt das Ziel, eine einfache Ordnerstruktur für ein beliebig
 5. Gibt es ein Tutorium ? Wenn ja: Welche Tage finden die Vorlesungen statt ?
 
 ### Für die Zukunft:
+- Ordner können an einem beliebigen Ort erstellt werden
 - Dateien werden automatisch erstellt
 - Anlagen Ordner
 - Multilingual (Englisch, Deutsch)
